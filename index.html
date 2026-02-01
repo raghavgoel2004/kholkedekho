@@ -134,23 +134,25 @@ function finalYes() {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  animation: fade 25s infinite;
+  animation: fade 10s infinite;
 }
 
+/* 2 seconds per image */
 .s1 { animation-delay: 0s; }
-.s2 { animation-delay: 5s; }
-.s3 { animation-delay: 10s; }
-.s4 { animation-delay: 15s; }
-.s5 { animation-delay: 20s; }
+.s2 { animation-delay: 2s; }
+.s3 { animation-delay: 4s; }
+.s4 { animation-delay: 6s; }
+.s5 { animation-delay: 8s; }
 
 @keyframes fade {
-  0% { opacity: 0; }
-  12% { opacity: 1; }
-  30% { opacity: 1; }
-  42% { opacity: 0; }
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  30%  { opacity: 1; }
+  40%  { opacity: 0; }
   100% { opacity: 0; }
 }
 
+/* SOFT BLUR (NOT HEAVY) */
 .final-box {
   position: relative;
   z-index: 2;
@@ -162,8 +164,10 @@ function finalYes() {
   justify-content: center;
   text-align: center;
   padding: 22px;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(4px);
+
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
 }
 
 .final-box h1 {
