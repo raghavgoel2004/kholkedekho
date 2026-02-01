@@ -10,18 +10,15 @@ body {
   margin: 0;
   height: 100svh;
   font-family: Arial, sans-serif;
-  background: #000;
+  background: linear-gradient(135deg, #0f0f0f, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   overflow: hidden;
 }
 
-/* FIRST SCREEN */
 .box {
-  height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   padding: 20px;
 }
@@ -63,10 +60,8 @@ button {
 <div class="box">
   <h1>Hey CHETNA Verma ❤️</h1>
   <h2>Will you be my Parvatiji forever? 🌙</h2>
-  <div>
-    <button id="yes" onclick="finalYes()">Yes</button>
-    <button id="no">No</button>
-  </div>
+  <button id="yes" onclick="finalYes()">Yes</button>
+  <button id="no">No</button>
 </div>
 
 <script>
@@ -75,23 +70,27 @@ let noClicks = 0;
 
 noBtn.addEventListener("click", () => {
   noClicks++;
+
   if (noClicks >= 4) {
     finalYes();
     return;
   }
+
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 80);
   noBtn.style.position = "absolute";
-  noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
-  noBtn.style.top = Math.random() * (window.innerHeight - 80) + "px";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 });
 
 function finalYes() {
   document.body.innerHTML = `
   <div class="slideshow">
-    <img src="img1.png" class="slide s1">
-    <img src="img2.png" class="slide s2">
-    <img src="img3.png" class="slide s3">
-    <img src="img4.png" class="slide s4">
-    <img src="img5.png" class="slide s5">
+    <div class="slide s1"></div>
+    <div class="slide s2"></div>
+    <div class="slide s3"></div>
+    <div class="slide s4"></div>
+    <div class="slide s5"></div>
   </div>
 
   <div class="final-box">
@@ -107,13 +106,15 @@ function finalYes() {
       <br><br>
       Tum mere liye koi option nahi ho.<br>
       Tum meri woh choice ho<br>
-      jo main har baar karta hoon.
+      jo main har baar karta hoon,<br>
+      jise main dil se maanta hoon, poojta hoon.
       <br><br>
       Chahe zindagi mujhe hazaar mauke de kisi aur ke liye,<br>
       main hamesha tumhare saath rehna chahunga.
       <br><br>
       Aur agar abhi nahi…<br>
       toh main intezaar karunga.<br>
+      Tum mano ya na mano,<br>
       <strong>main tumhara intezaar karunga.</strong>
     </p>
 
@@ -121,41 +122,42 @@ function finalYes() {
   </div>
 
 <style>
+body {
+  margin: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
 .slideshow {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
 }
 
 .slide {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
   opacity: 0;
-  animation: fade 10s infinite;
+  animation: fade 25s infinite;
 }
 
-/* 2 seconds per image */
-.s1 { animation-delay: 0s; }
-.s2 { animation-delay: 2s; }
-.s3 { animation-delay: 4s; }
-.s4 { animation-delay: 6s; }
-.s5 { animation-delay: 8s; }
+.s1 { background-image: url('img1.png'); animation-delay: 0s; }
+.s2 { background-image: url('img2.png'); animation-delay: 5s; }
+.s3 { background-image: url('img3.png'); animation-delay: 10s; }
+.s4 { background-image: url('img4.png'); animation-delay: 15s; }
+.s5 { background-image: url('img5.png'); animation-delay: 20s; }
 
 @keyframes fade {
-  0%   { opacity: 0; }
-  10%  { opacity: 1; }
-  30%  { opacity: 1; }
-  40%  { opacity: 0; }
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  30% { opacity: 1; }
+  42% { opacity: 0; }
   100% { opacity: 0; }
 }
 
-/* SOFT BLUR (NOT HEAVY) */
 .final-box {
-  position: relative;
-  z-index: 2;
   height: 100svh;
   overflow-y: auto;
   display: flex;
@@ -164,19 +166,18 @@ function finalYes() {
   justify-content: center;
   text-align: center;
   padding: 22px;
-
-  background: rgba(0,0,0,0.18);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(4px);
 }
 
 .final-box h1 {
   font-size: 32px;
+  margin-bottom: 10px;
 }
 
 .final-box p {
   font-size: 17px;
-  line-height: 1.6;
+  line-height: 1.65;
   max-width: 95%;
 }
 
